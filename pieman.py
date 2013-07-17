@@ -29,18 +29,27 @@ print "Up to Brodman area ", indices.max() # 47
 
 #Let's see if naively clustering voxels using kmeans into 47 classes
 #will show any overlap with the actualy recorded indices we got from brodmanIdx
-#Working with all 30k voxels will take seceral min.
-#TODO: Considere what a good fraction of the data is to develop on
-mv = meanVox
+#Doing this for all 30k voxels would take for ever. 
+#Let's first look at a couple of hundred
+mv = meanVox[:100]
 k_means = cluster.KMeans(n_clusters=47) 
 k_means.fit(mv)
 #Suppose if we use reverse_meansList we will also have to reverse our indices
-rev_indices = indices[::-1] 
-labels = k_means.labels_
+rev = indices[::-1] 
+print k_means.labels_
+print rev[:100]
+#Set number of 47 clusters doesn't work anymore when only using a fraction of 
+#the data because not all classes might show up.
+#The first hundred entries of rev only feature 5 different brodman areas
+#Let's fix this
+k_means = cluster.KMeans(n_clusters=5) 
+k_means.fit(mv)
+print k_means.labels_
+print rev[:100]
+#No obvious correlation between the two
+#TODO: Check if the indices and the reverse_meanList really express what you 
+#think they do. You might be looking at wrong sections
 
-#There is no obvious overlap of clusteres for just the first 100 voxels
-#TODO: Let's try checking whether rev_indices and the classes kmeans found have 
-#any correlation 
 
 
 
