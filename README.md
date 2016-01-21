@@ -6,4 +6,4 @@ Pieman is a toy project analysing a fMRI data set that recorded brain activity w
 Primarily, this project looked at correlations between Brodmann areas.
 Here is an example graph showing correlations between area 41 and 42:
 
-![correlation example](https://raw.github.com/jvs--/pieman/img/corr41-42.png)
+![correlation example](https://github.com/jvs--/pieman/blob/master/img/corr41-42.png)
